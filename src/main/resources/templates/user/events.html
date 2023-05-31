@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+  <title>Events List</title>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h3>Browse events list</h3>
+  <hr>
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+    <tr>
+      <th>Event Name</th>
+      <th>Event Description</th>
+      <th>Date of event</th>
+      <th>Buy ticket</th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="tempEvent : ${eventList}">
+
+      <td th:text="${tempEvent.name}" />
+      <td th:text="${tempEvent.description}" />
+      <td th:text="${tempEvent.date}" />
+      <td>
+        <a th:href="@{/user/buy-ticket(eventId=${tempEvent.id})}" class="btn btn-info btn-sm">Buy</a>
+      </td>
+
+    </tr>
+    </tbody>
+  </table>
+  <a th:href="@{/}" class="btn btn-primary btn-sm mb-3">
+    Back to main admin page
+  </a>
+  <a th:href="@{/user/tickets}" class="btn btn-primary btn-sm mb-3">
+    Your tickets list
+  </a>
+</div>
+
+</body>
+</html>
+
+
+

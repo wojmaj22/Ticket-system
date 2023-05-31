@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://thymeleaf.org/extras/spring-security"><head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Main sitr</title>
+</head>
+<body>
+<div class="container">
+<h1>Main Page</h1>
+<hr>
+Welcome to ticketing system.
+
+<hr>
+<p>
+User: <span sec:authentication="principal.username"> </span><br>
+</p>
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+    <form action="#" th:action="@{/admin/}" method="get">
+        <input type="submit" value="Admin Site" class="btn btn-primary btn-sm mb-3">
+    </form>
+</div>
+    <div sec:authorize="hasRole('ROLE_USER')">
+        <form action="#" th:action="@{/user/events}" method="get">
+            <input type="submit" value="Browse events" class="btn btn-primary btn-sm mb-3">
+        </form>
+    </div>
+<div sec:authorize="hasRole('ROLE_USER')">
+    <form action="#" th:action="@{/user/tickets}" method="get">
+        <input type="submit" value="Your tickets" class="btn btn-primary btn-sm mb-3">
+    </form>
+</div>
+<form action="#"  th:action="@{/logout}" method="post">
+    <input type="submit" value="Logout" class="btn btn-primary btn-sm mb-3">
+</form>
+</div>
+</body>
+</html>

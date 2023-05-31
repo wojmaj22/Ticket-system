@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Events List</title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h3>Admin events list</h3>
+    <hr>
+    <a th:href="@{/admin/add_event}" class="btn btn-primary btn-sm mb-3">
+        Add new event
+    </a>
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+        <tr>
+            <th>Id</th>
+            <th>Event Name</th>
+            <th>Event Description</th>
+            <th>Date of event</th>
+            <th>Edit event data</th>
+            <th>Delete event</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="tempEvent : ${events}">
+
+            <td th:text="${tempEvent.id}" />
+            <td th:text="${tempEvent.name}" />
+            <td th:text="${tempEvent.description}" />
+            <td th:text="${tempEvent.date}" />
+            <td>
+                <a th:href="@{/admin/updateEvent(eventId=${tempEvent.id})}" class="btn btn-info btn-sm">Update event data</a>
+            </td>
+            <td>
+                <a th:href="@{/admin/deleteEvent(eventId=${tempEvent.id})}" class="btn btn-danger btn-sm" onclick="if (!(confirm('Are you sure'))) return false">Delete event</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/admin/}" class="btn btn-primary btn-sm mb-3">
+        Back to main admin page
+    </a>
+</div>
+
+</body>
+</html>
+
+
+

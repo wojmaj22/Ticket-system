@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin page</title>
+</head>
+<body>
+This is admin page of this site.
+<hr>
+<form action="#" th:action="@{/home}" method="get">
+  <input type="submit" value="Back to home page">
+</form>
+<a th:href="@{/admin/events}"><button>Events list</button>
+</a>
+
+</body>
+</html>
