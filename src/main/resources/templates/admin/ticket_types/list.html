@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Ticket types for event</title>
+</head>
+<body>
+<div class="container">
+
+    <h3>List of ticket types for:</h3><h3 th:text="${event.getName()}"></h3>
+    <hr>
+    <a th:href="@{/admin/ticket_types/add(eventId=${event.id})}" class="btn btn-primary btn-sm mb-3">
+        Add new ticket type for this event
+    </a>
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+        <tr>
+            <th>Id</th>
+            <th>Ticket type</th>
+            <th>Price</th>
+            <th>Manage type</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="tempType : ${ticketTypes}">
+
+            <td th:text="${tempType.getId()}" />
+            <td th:text="${tempType.getType()}" />
+            <td th:text="${tempType.getPrice()}" />
+            <td>
+                <a th:href="@{/admin/ticket_types/delete(typeId=${tempType.id})}" class="btn btn-info btn-sm">Delete</a>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/admin/events/list}" class="btn btn-primary btn-sm mb-3">
+        Back to events
+    </a>
+</div>
+</body>
+</html>

@@ -1,6 +1,7 @@
 package com.majchrzw.springboot.ticketSystem.entity;
 
 import jakarta.validation.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 public class EventForm {
 	
@@ -13,6 +14,25 @@ public class EventForm {
 	
 	@NotEmpty( message = "Must have a date of event!")
 	private String date;
+	
+
+	public MultipartFile getPhoto() {
+		return photo;
+	}
+	
+	public void setPhoto(MultipartFile photo) {
+		this.photo = photo;
+	}
+	
+	private MultipartFile photo;
+
+	public EventForm(long id, String name, String description, String date, MultipartFile photo) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.date = date;
+		this.photo = photo;
+	}
 	
 	public EventForm(long id, String name, String description, String date) {
 		this.id = id;

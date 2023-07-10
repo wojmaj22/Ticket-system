@@ -18,18 +18,19 @@
 
     <h3>Admin events list</h3>
     <hr>
-    <a th:href="@{/admin/add_event}" class="btn btn-primary btn-sm mb-3">
+    <a th:href="@{/admin/events/add}" class="btn btn-primary btn-sm mb-3">
         Add new event
     </a>
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
         <tr>
             <th>Id</th>
+            <th>Photo</th>
             <th>Event Name</th>
             <th>Event Description</th>
             <th>Date of event</th>
-            <th>Edit event data</th>
-            <th>Add ticket type</th>
+            <th>Event data</th>
+            <th>Ticket types</th>
             <th>Delete event</th>
         </tr>
         </thead>
@@ -38,17 +39,18 @@
         <tr th:each="tempEvent : ${events}">
 
             <td th:text="${tempEvent.id}" />
+            <td><img width=50px height=50px  th:src="@{'/images/' + ${tempEvent.getPhotoPath()}}" alt="Photo of this event"/></td>
             <td th:text="${tempEvent.name}" />
             <td th:text="${tempEvent.description}" />
             <td th:text="${tempEvent.date}" />
             <td>
-                <a th:href="@{/admin/updateEvent(eventId=${tempEvent.id})}" class="btn btn-info btn-sm">Update event data</a>
+                <a th:href="@{/admin/events/update(eventId=${tempEvent.id})}" class="btn btn-info btn-sm">Update</a>
             </td>
             <td>
-                <a th:href="@{/admin/add-ticket-type(eventId=${tempEvent.id})}" class="btn btn-info btn-sm">Add</a>
+                <a th:href="@{/admin/ticket_types/list(eventId=${tempEvent.id})}" class="btn btn-info btn-sm">Browse</a>
             </td>
             <td>
-                <a th:href="@{/admin/deleteEvent(eventId=${tempEvent.id})}" class="btn btn-danger btn-sm" onclick="if (!(confirm('Are you sure'))) return false">Delete event</a>
+                <a th:href="@{/admin/events/delete(eventId=${tempEvent.id})}" class="btn btn-danger btn-sm" onclick="if (!(confirm('Are you sure'))) return false">Delete</a>
             </td>
         </tr>
         </tbody>

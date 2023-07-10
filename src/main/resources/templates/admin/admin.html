@@ -10,7 +10,9 @@ This is admin page of this site.
 <form action="#" th:action="@{/home}" method="get">
   <input type="submit" value="Back to home page">
 </form>
-<a th:href="@{/admin/events}"><button>Events list</button>
+<a th:href="@{/admin/events/list}"><button>Events list</button>
+</a>
+<a th:href="@{/admin/users/search}"><button>Browse users</button>
 </a>
 
 </body>

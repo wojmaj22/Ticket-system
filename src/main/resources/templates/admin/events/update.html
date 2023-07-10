@@ -17,7 +17,7 @@
     <h3>Event update form</h3>
     <hr>
     <p class="h4 mb-4">Save event</p>
-    <form action="#" th:action="@{/admin/saveEvent}" th:object="${event}" method="POST">
+    <form action="#" th:action="@{/admin/events/list/update}" th:object="${event}" method="POST">
         <input type="hidden" th:field="*{id}">
         <input type="text" th:field="*{name}" class="form-control mb-4 w-25" placeholder="Event name">
         <input type="text" th:field="*{description}" class="form-control mb-4 w-25" placeholder="Description">
@@ -25,7 +25,7 @@
         <button type="submit" class="btn btn-info col-2">Save</button>
     </form>
     <hr>
-    <a th:href="@{/admin/events} ">Back to List</a>
+    <a th:href="@{/admin/events/list} ">Back to List</a>
 </div>
 </body>
 </html>

@@ -7,7 +7,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
-    <title>Main sitr</title>
+    <title>Main site</title>
 </head>
 <body>
 <div class="container">
@@ -25,12 +25,12 @@ User: <span sec:authentication="principal.username"> </span><br>
     </form>
 </div>
     <div sec:authorize="hasRole('ROLE_USER')">
-        <form action="#" th:action="@{/user/events}" method="get">
+        <form action="#" th:action="@{/user/events/list}" method="get">
             <input type="submit" value="Browse events" class="btn btn-primary btn-sm mb-3">
         </form>
     </div>
 <div sec:authorize="hasRole('ROLE_USER')">
-    <form action="#" th:action="@{/user/tickets}" method="get">
+    <form action="#" th:action="@{/user/tickets/list}" method="get">
         <input type="submit" value="Your tickets" class="btn btn-primary btn-sm mb-3">
     </form>
 </div>

@@ -18,34 +18,45 @@
 
   <h3>Browse events list</h3>
   <hr>
+  <form action="#" th:action="@{/user/events/search}">
+    <input type="text" placeholder="Search for event" name="name">
+    <button type="submit" value="Search">Search</button>
+  </form>
+  <hr>
   <table class="table table-bordered table-striped">
     <thead class="table-dark">
     <tr>
       <th>Event Name</th>
       <th>Event Description</th>
       <th>Date of event</th>
-      <th>Buy ticket</th>
+      <th>Tickets</th>
 
     </tr>
     </thead>
 
     <tbody>
-    <tr th:each="tempEvent : ${eventList}">
+    <tr th:each="tempEvent : ${events}">
 
       <td th:text="${tempEvent.name}" />
       <td th:text="${tempEvent.description}" />
       <td th:text="${tempEvent.date}" />
       <td>
-        <a th:href="@{/user/buy-ticket(eventId=${tempEvent.id})}" class="btn btn-info btn-sm">Buy</a>
+        <a th:href="@{/user/events/ticket_types(eventId=${tempEvent.id})}" class="btn btn-info btn-sm">Browse</a>
       </td>
 
     </tr>
     </tbody>
   </table>
-  <a th:href="@{/}" class="btn btn-primary btn-sm mb-3">
-    Back to main admin page
+  <div th:if="${hasPrevious}">
+    <a th:href="@{/user/events/list(page=${currentPage}-1)}" class="btn btn-primary btn-sm mb-3">Previous page</a>
+  </div>
+  <div th:if="${hasNext}">
+    <a th:href="@{/user/events/list(page=${currentPage}+1)}" class="btn btn-primary btn-sm mb-3">Next page</a>
+  </div>
+  <a th:href="@{/home}" class="btn btn-primary btn-sm mb-3">
+    Back to main page
   </a>
-  <a th:href="@{/user/tickets}" class="btn btn-primary btn-sm mb-3">
+  <a th:href="@{/user/tickets/list}" class="btn btn-primary btn-sm mb-3">
     Your tickets list
   </a>
 </div>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Edit User roles</h3>
+<hr>
+<div>
+    <div th:text="${user.email}"></div>
+    <table>
+        <thead>
+            <tr>
+                <th>Role</th>
+                <th>Manage</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="authority : ${authorities}">
+                <td th:text="${authority.authority}"></td>
+                <td>
+                    <a th:href="@{/admin/users/delete_authority(authority=${authority.authority},email=${user.email})}" onclick="if (!(confirm('Are you sure'))) return false">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <form th:action="@{/admin/users/add_authority}" th:object="${form}" method="post">
+        <input type="hidden" th:field="${form.email}" th:value="${user.email}">
+        <input type="text" th:field="${form.authority}" placeholder="New authority">
+        <button type="submit">Save</button>
+    </form>
+    <hr>
+    <form th:action="@{/admin/users/enable}" th:object="${enableForm}" method="post">
+        <input type="hidden" th:field="${enableForm.email}" th:value="${user.email}">
+        <input type="checkbox" th:field="${enableForm.enabled}" th:checked="${enableForm.enabled}" th:text="Enabled">
+        <button type="submit">Save</button>
+    </form>
+</div>
+</body>
+</html>

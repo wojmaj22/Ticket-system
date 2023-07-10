@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
@@ -12,10 +13,10 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 
 import javax.sql.DataSource;
-import java.security.Principal;
 
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 	
 	@Autowired
@@ -28,6 +29,7 @@ public class SecurityConfig {
 		
 		udm.setUsersByUsernameQuery("select email, password, enabled from users where email=?");
 		udm.setAuthoritiesByUsernameQuery("select email, authority from authorities where email=?");
+		udm.setDeleteUserAuthoritiesSql("delete from authorities where username=?");
 		
 		return udm;
 	}
@@ -49,6 +51,7 @@ public class SecurityConfig {
 								.permitAll()
 								.loginProcessingUrl("/process-login")
 								.permitAll()
+								.usernameParameter("email")
 								.defaultSuccessUrl("/home"))
 				.exceptionHandling( exception ->
 						exception

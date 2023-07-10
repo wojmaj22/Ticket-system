@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of searched users</title>
+</head>
+<body>
+<table >
+    <thead>
+    <tr>
+        <th>Username</th>
+        <th>Enabled</th>
+        <td>Change roles</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${userPage.getContent()}">
+        <td th:text="${user.email}" />
+        <td th:text="${user.enabled}" />
+        <td>
+            <a th:href="@{/admin/users/edit(email=${user.email})}">Edit</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

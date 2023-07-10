@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+  <title>Add ticket type for event</title>
+</head>
+
+<body>
+<div>
+  <h3>Ticket type form</h3>
+  <hr>
+  <p class="h4 mb-4">Save type</p>
+  <form action="#" th:action="@{/admin/ticket_types/save_type}" th:object="${ticketType}" method="POST">
+    <input type="hidden" th:field="*{id}">
+    <input type="hidden" th:field="*{event}">
+    <input type="text" th:field="*{type}" class="form-control mb-4 w-25" placeholder="description">
+    <input type="text" th:field="*{price}" class="form-control mb-4 w-25" placeholder="price">
+    <button type="submit" class="btn btn-info col-2">Save</button>
+  </form>
+  <hr>
+  <a th:href="@{/admin/ticket_types/list}">Back to List</a>
+</div>
+</body>
+</html>

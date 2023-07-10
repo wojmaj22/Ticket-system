@@ -13,14 +13,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-// TODO - dodać kupowanie biletów dla użytkoników, przeglądanie listy eventów i listy swoich biletów dla użytkowników - w user controller
+
 @Controller
 public class MainController {
 	
-	private UserService userService;
+	private final UserService userService;
 	
-	private EventService eventService;
-	private TicketService ticketService;
+	private final EventService eventService;
+	private final TicketService ticketService;
 	
 	@Autowired
 	public MainController(UserService userService, TicketService ticketService, EventService eventService) {
@@ -55,12 +55,12 @@ public class MainController {
 			return "register";
 		}
 		User newUser = new User( rF.getUsername(), rF.getPassword(), rF.getEmail(), true);
-		if( !userService.checkIfUserExistsByEmail(newUser.getEmail()) ){
-			userService.saveUserWithAuthority(newUser);
-			return "login";
-		} else {
+		try{
+			userService.registerUser(newUser);
+		} catch ( IllegalArgumentException e){
 			return "redirect:/register?emailerror=emailtaken";
 		}
+		return "login";
 	}
 	
 	@GetMapping("/register")

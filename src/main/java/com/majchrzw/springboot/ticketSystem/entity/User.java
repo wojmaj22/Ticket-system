@@ -1,11 +1,14 @@
 package com.majchrzw.springboot.ticketSystem.entity;
 
 import jakarta.persistence.*;
-import org.springframework.context.annotation.Primary;
+import lombok.*;
 
 import java.util.List;
-import java.util.Set;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="users")
 public class User {
@@ -23,52 +26,16 @@ public class User {
 	@Column(name = "enabled")
 	private boolean enabled;
 	
-	public List<Ticket> getTickets() {
-		return tickets;
-	}
+	//@OneToMany( mappedBy = "user",  cascade = CascadeType.ALL)
+	//private List<Ticket> tickets;
 	
-	@OneToMany( mappedBy = "user",  cascade = CascadeType.REMOVE)
-	private List<Ticket> tickets;
-	
-	public User() {
-	}
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Order> orders;
 	
 	public User(String username, String password, String email, boolean enabled) {
 		this.username = username;
 		this.password = password;
 		this.email = email;
-		this.enabled = enabled;
-	}
-	
-	public String getUsername() {
-		return username;
-	}
-	
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
-	
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	public String getEmail() {
-		return email;
-	}
-	
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	public boolean isEnabled() {
-		return enabled;
-	}
-	
-	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
 }
