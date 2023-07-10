@@ -29,6 +29,7 @@
             <th>Event Description</th>
             <th>Date of event</th>
             <th>Edit event data</th>
+            <th>Add ticket type</th>
             <th>Delete event</th>
         </tr>
         </thead>
@@ -42,6 +43,9 @@
             <td th:text="${tempEvent.date}" />
             <td>
                 <a th:href="@{/admin/updateEvent(eventId=${tempEvent.id})}" class="btn btn-info btn-sm">Update event data</a>
+            </td>
+            <td>
+                <a th:href="@{/admin/add-ticket-type(eventId=${tempEvent.id})}" class="btn btn-info btn-sm">Add</a>
             </td>
             <td>
                 <a th:href="@{/admin/deleteEvent(eventId=${tempEvent.id})}" class="btn btn-danger btn-sm" onclick="if (!(confirm('Are you sure'))) return false">Delete event</a>

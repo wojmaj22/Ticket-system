@@ -30,7 +30,7 @@
     <tbody>
     <tr th:each="tempTicket : ${ticketsList}">
 
-      <td th:text="${tempTicket.event.getName()}" />
+      <td th:text="${tempTicket.getTicketType().getEvent().getName()}" />
       <td th:text="${tempTicket.description}" />
       <td th:text="${tempTicket.ticketStatus}" />
 
